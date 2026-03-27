@@ -1,0 +1,3 @@
+Write complete, production-ready Python code for:
+
+{architecture}
