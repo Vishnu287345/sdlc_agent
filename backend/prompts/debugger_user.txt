@@ -1,0 +1,7 @@
+Fix this Python code.
+
+Code:
+{code}
+
+Errors:
+{errors}

@@ -1,0 +1,3 @@
+Design a detailed system architecture based on this plan:
+
+{plan}

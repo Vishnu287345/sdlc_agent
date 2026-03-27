@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - redis
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      # Fix #17: pass backend URLs so frontend doesn't hardcode localhost
+      - REACT_APP_API_URL=http://localhost:8000
+      - REACT_APP_WS_URL=ws://localhost:8000/ws
+    depends_on:
+      - backend
+
+  redis:
+    image: redis:7
+    volumes:
+      - redis_data:/data          # Fix #16: persist data across restarts
+    command: redis-server --appendonly yes
+
+volumes:
+  redis_data:
